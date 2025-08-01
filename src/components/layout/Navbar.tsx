@@ -34,9 +34,9 @@ const Navbar = ({ showSearch = true, searchValue = '', onSearchChange }: NavbarP
           <Link to="/" className="text-sm font-medium text-[#0e161b] hover:text-blue-600">
             Home
           </Link>
-          <a href="#" className="text-sm font-medium text-[#0e161b] hover:text-blue-600">
+          <Link to="/doctors" className="text-sm font-medium text-[#0e161b] hover:text-blue-600">
             Doctors
-          </a>
+          </Link>
           <Link to="/appointments" className="text-sm font-medium text-[#0e161b] hover:text-blue-600">
             Appointments
           </Link>
@@ -126,13 +126,13 @@ const Navbar = ({ showSearch = true, searchValue = '', onSearchChange }: NavbarP
             >
               Home
             </Link>
-            <a 
-              href="#" 
+            <Link 
+              to="/doctors" 
               className="block text-sm font-medium text-[#0e161b] hover:text-blue-600 py-2"
               onClick={() => setIsMobileMenuOpen(false)}
             >
               Doctors
-            </a>
+            </Link>
             <Link 
               to="/appointments" 
               className="block text-sm font-medium text-[#0e161b] hover:text-blue-600 py-2"
