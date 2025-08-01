@@ -87,11 +87,11 @@ export const appointmentService = {
     doctorId: number
     patientName: string
     email: string
-    phone?: string
+    phone?: string | null
     date: string
     time: string
     reason: string
-    notes?: string
+    notes?: string | null
   }): Promise<Appointment> => {
     const response = await appointmentService.fetchApi<Appointment>('/appointments', {
       method: 'POST',

@@ -100,11 +100,11 @@ const BookAppointmentPage = () => {
         doctorId: doctor.id,
         patientName,
         email,
-        phone: phone || undefined,
+        phone: phone || null,
         date: formattedDate,
         time: selectedTime,
         reason,
-        notes: notes || undefined
+        notes: notes || null
       };
 
       // Book appointment via API

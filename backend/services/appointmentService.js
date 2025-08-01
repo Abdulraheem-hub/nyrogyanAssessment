@@ -124,8 +124,15 @@ class AppointmentService {
       `;
 
       const [result] = await pool.execute(query, [
-        doctorId, patientName, email, phone, date, time,
-        reason, notes, status
+        doctorId, 
+        patientName, 
+        email, 
+        phone || null, 
+        date, 
+        time,
+        reason, 
+        notes || null, 
+        status
       ]);
 
       // Return the created appointment with doctor details
