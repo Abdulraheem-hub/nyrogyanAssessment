@@ -6,9 +6,25 @@ A modern healthcare platform for booking appointments with doctors. Built with R
 
 **🌐 Deployed Application:** [https://main-pi-ten.vercel.app/](https://main-pi-ten.vercel.app/)
 
-**🎥 Video Demonstration:** [Watch Full Demo](https://drive.google.com/file/d/1NVmPZu8fnXIR6gaN9qHShvufxbF8XGqS/view?usp=sharing)
+## 🎥 Video Demonstration
 
-> The video demonstrates all key features including doctor search, appointment booking, profile management, and responsive design across different devices.
+<div align="center">
+
+### 📹 Full Feature Walkthrough
+
+[![Healthcare Platform Demo](https://img.shields.io/badge/▶️_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://drive.google.com/file/d/1NVmPZu8fnXIR6gaN9qHShvufxbF8XGqS/view?usp=sharing)
+
+</div>
+
+**🎬 What the demo shows:**
+- 🏠 **Homepage** - Doctor search and filtering functionality
+- 👨‍⚕️ **Doctor Profiles** - Detailed information and specialties
+- 📅 **Appointment Booking** - Interactive calendar with time slots
+- 📱 **Responsive Design** - Seamless experience across devices
+- 👤 **Profile Management** - User dashboard and appointment history
+- 🎨 **Modern UI/UX** - Smooth animations and intuitive navigation
+
+---
 
 ## ✨ Features
 
@@ -184,24 +200,21 @@ DELETE /api/appointments/:id     # Cancel appointment
 
 MIT License - Making healthcare accessible for everyone. 🏥💙
 
-## 🎬 Demo & Deployment
+## 🎬 Deployment Details
 
-### Video Demonstration
-**📹 Full Feature Walkthrough:** [Google Drive Video](https://drive.google.com/file/d/1NVmPZu8fnXIR6gaN9qHShvufxbF8XGqS/view?usp=sharing)
-
-The video demonstrates:
-- 🏠 Homepage with doctor search and filtering
-- 👨‍⚕️ Doctor profiles with detailed information
-- 📅 Interactive appointment booking system
-- 📱 Responsive design across devices
-- 👤 User profile and appointment management
-- 🎨 Modern UI/UX with smooth animations
-
-### Deployment Details
-- **Frontend:** Deployed on Vercel with automatic deployments
-- **Backend:** Deployed API with full database integration
-- **Database:** Production MySQL database with sample data
+### Production Infrastructure
+- **Frontend:** Deployed on Vercel with automatic deployments from GitHub
+- **Backend API:** Deployed with full database integration and CORS configuration
+- **Database:** Production MySQL database with comprehensive sample data
 - **Domain:** [main-pi-ten.vercel.app](https://main-pi-ten.vercel.app/)
+- **CI/CD:** Automatic deployments on push to main branch
+
+### Performance & Features
+- ⚡ **Fast Loading** - Optimized Vite build with code splitting
+- 🔒 **Secure API** - Helmet.js security headers and CORS protection
+- 📱 **Mobile First** - Responsive design tested across devices
+- 🎨 **Modern UI** - Shadcn/UI components with Tailwind CSS
+- 🚀 **TypeScript** - Full type safety across frontend and backend
 
 ---
 
