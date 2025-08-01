@@ -1,99 +1,262 @@
-# HealthFirst - Healthcare Website
+# 🏥 NirogGyan - Modern Healthcare Platform
 
-A modern healthcare website built with React, TypeScript, and Shadcn UI components. This platform allows users to find doctors, book appointments, and manage their health records.
+A comprehensive healthcare management platform built with modern web technologies. NirogGyan enables patients to find doctors, book appointments, and manage their healthcare journey seamlessly.
 
-## 🚀 Features
+## ✨ Features
 
-- **Simple Welcome Message**: Clean notification for first-time visitors about the demo account
-- **Doctor Search & Filtering**: Find doctors by specialty, availability, and ratings
-- **Appointment Booking**: Schedule appointments with real-time availability
-- **Sample Account**: Pre-configured demo account for immediate testing
-- **Responsive Design**: Modern, clean interface that works on all devices  
-- **Component Library**: Built with Shadcn UI components for consistency
-- **TypeScript**: Full type safety throughout the application
-- **Feature-First Architecture**: Organized codebase with feature-based structure
+### 🔍 Doctor Discovery
+- **Advanced Search**: Find doctors by specialty, location, and availability
+- **Detailed Profiles**: View doctor qualifications, experience, and patient reviews
+- **Specialty Filtering**: Browse doctors by medical specialization
+- **Rating System**: Patient feedback and ratings for informed decisions
 
-## ✨ Welcome Message
+### 📅 Appointment Management
+- **Real-time Booking**: Schedule appointments with instant confirmation
+- **Calendar Integration**: View available time slots and manage bookings
+- **Appointment History**: Track past and upcoming appointments
+- **Cancellation & Rescheduling**: Flexible appointment management
 
-The application shows a simple welcome dialog for users visiting the home page:
+### 👤 User Experience
+- **Responsive Design**: Optimized for desktop, tablet, and mobile devices
+- **Modern UI**: Clean, intuitive interface built with Shadcn UI
+- **Fast Performance**: Optimized with Vite and React 18
+- **Accessibility**: WCAG compliant design for all users
 
-- **Shows on home page visits**: Displays every time someone loads the home page (/)
-- **Auto-dismisses**: Closes automatically after 8 seconds
-- **Clear messaging**: Simple explanation that user is logged into a default account
-- **Demo account info**: Shows that all features can be tested immediately
-- **Non-intrusive**: Clean, minimal design that doesn't overwhelm users
-
-### Testing the Welcome Message
-
-In development mode:
-- Press `Ctrl+Shift+W` to manually trigger the welcome message
-- Or simply visit/refresh the home page to see it
+### 🔒 Security & Privacy
+- **Data Protection**: Secure handling of sensitive health information
+- **JWT Authentication**: Secure user authentication system
+- **HIPAA Compliance**: Following healthcare data protection standards
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: React.js with TypeScript
-- **Styling**: Tailwind CSS v4 + Shadcn UI
-- **Build Tool**: Vite
-- **Icons**: Lucide React
-- **Authentication**: JWT (planned)
-- **Backend**: Node.js + Express.js (planned)
-- **Database**: SQL (planned)
+### Frontend
+- **React 18** with TypeScript for type-safe development
+- **Tailwind CSS** for utility-first styling
+- **Shadcn UI** for consistent, accessible components
+- **Vite** for fast development and optimized builds
+- **Lucide React** for modern iconography
 
-## 📦 Installation
+### Backend
+- **Node.js** with Express.js framework
+- **MySQL** database for reliable data storage
+- **JWT** for secure authentication
+- **RESTful API** design pattern
 
-1. Clone the repository:
+### Development Tools
+- **TypeScript** for enhanced developer experience
+- **ESLint** for code quality
+- **Prettier** for code formatting
+- **Git** for version control
+
+## � Quick Start
+
+### Prerequisites
+- Node.js 18+ and npm installed
+- Git for version control
+
+### Installation
+
+1. **Clone the repository:**
 ```bash
-git clone <repository-url>
-cd healthcare-website
+git clone https://github.com/yourusername/nirogyan-healthcare.git
+cd nirogyan-healthcare
 ```
 
-2. Install dependencies:
+2. **Install frontend dependencies:**
 ```bash
 npm install
 ```
 
-3. Start the development server:
+3. **Install backend dependencies:**
+```bash
+cd backend
+npm install
+cd ..
+```
+
+4. **Set up environment variables:**
+```bash
+# Frontend (.env)
+VITE_API_URL=http://localhost:5000
+
+# Backend (backend/.env)
+DB_HOST=your_database_host
+DB_USER=your_database_user
+DB_PASSWORD=your_database_password
+DB_NAME=nirogyan_db
+JWT_SECRET=your_jwt_secret
+PORT=5000
+```
+
+5. **Start the development servers:**
+
+Frontend:
 ```bash
 npm run dev
 ```
 
-4. Open your browser and navigate to `http://localhost:5173`
+Backend (in a new terminal):
+```bash
+cd backend
+npm start
+```
 
-## 🏗️ Build
+6. **Access the application:**
+- Frontend: `http://localhost:5173`
+- Backend API: `http://localhost:5000`
 
-To build the project for production:
+## 🏗️ Build & Deploy
 
+### Production Build
 ```bash
 npm run build
 ```
 
-## 📁 Project Structure
-
-```
-src/
-├── components/ui/          # Shadcn UI components
-├── features/              # Feature-based modules
-│   └── home/             # Homepage components
-├── lib/                  # Utility functions
-├── assets/               # Static assets
-└── App.tsx              # Main app component
+### Deploy to Vercel
+```bash
+npm install -g vercel
+vercel login
+vercel
 ```
 
-## 🎨 Design
+## 📁 Project Architecture
 
-The design is based on a clean, modern healthcare interface featuring:
-- Professional color scheme with slate and blue accents
-- Card-based doctor listings with ratings and availability
-- Intuitive search and filtering capabilities
-- Accessible navigation and user interface
+```
+├── src/
+│   ├── components/
+│   │   ├── ui/                    # Reusable UI components (Shadcn)
+│   │   └── layout/                # Layout components
+│   ├── features/
+│   │   ├── home/                  # Homepage feature
+│   │   ├── doctor/                # Doctor-related components
+│   │   ├── appointment/           # Appointment management
+│   │   └── profile/               # User profile
+│   ├── services/                  # API service layer
+│   ├── lib/                       # Utility functions
+│   └── assets/                    # Static assets
+├── backend/
+│   ├── config/                    # Database configuration
+│   ├── routes/                    # API routes
+│   ├── services/                  # Business logic
+│   └── scripts/                   # Database scripts
+└── public/                        # Static public files
+```
 
-## 🔧 Development
+## 🎨 Key Features Showcase
 
-- Uses feature-first architecture for scalability
-- TypeScript for type safety
-- Tailwind CSS for styling
-- Shadcn UI for consistent components
-- ESLint for code quality
+### 🏠 Homepage
+- Clean, professional landing page
+- Featured doctors and services
+- Quick appointment booking access
+- Health tips and medical articles
+
+### 🔍 Doctor Search
+- Advanced filtering by specialty, location, and availability
+- Real-time search results
+- Doctor profile cards with ratings and reviews
+- Detailed doctor information pages
+
+### 📅 Appointment Booking
+- Interactive calendar interface
+- Real-time availability checking
+- Appointment confirmation system
+- Email/SMS notifications
+
+### 👤 User Dashboard
+- Personal health records
+- Appointment history and management
+- Prescription tracking
+- Health goal monitoring
+
+## 🛠️ Development Guidelines
+
+### Code Style
+- Use TypeScript for all new components
+- Follow the existing component structure
+- Implement responsive design patterns
+- Use Tailwind CSS utility classes
+- Maintain accessibility standards
+
+### Component Organization
+- Feature-first architecture
+- Reusable UI components in `/components/ui/`
+- Business logic in service layer
+- Consistent naming conventions
+
+### API Integration
+- RESTful API design
+- Proper error handling
+- Loading states management
+- Data validation and sanitization
+
+## 🔐 Security Features
+
+- **Authentication**: JWT-based secure authentication
+- **Data Protection**: Encrypted sensitive data storage
+- **API Security**: Rate limiting and input validation
+- **HTTPS**: Secure data transmission
+- **Privacy**: GDPR and HIPAA compliant design
+
+## 🧪 Testing
+
+```bash
+# Run unit tests
+npm run test
+
+# Run integration tests
+npm run test:integration
+
+# Run E2E tests
+npm run test:e2e
+```
+
+## � Browser Support
+
+- Chrome 90+
+- Firefox 88+
+- Safari 14+
+- Edge 90+
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 👥 Team
+
+- **Frontend Development**: React.js, TypeScript, Tailwind CSS
+- **Backend Development**: Node.js, Express.js, MySQL
+- **UI/UX Design**: Modern healthcare interface design
+- **DevOps**: CI/CD pipeline with automated deployments
+
+## 📞 Support
+
+For support and questions:
+- Create an issue on GitHub
+- Email: support@nirogyan.com
+- Documentation: [Project Wiki](https://github.com/yourusername/nirogyan-healthcare/wiki)
+
+## 🚀 Roadmap
+
+- [ ] Advanced search filters
+- [ ] Telemedicine integration
+- [ ] Mobile app development
+- [ ] AI-powered health recommendations
+- [ ] Multi-language support
+- [ ] Insurance integration
+- [ ] Prescription management
+- [ ] Health data analytics
+
+---
+
+**NirogGyan** - Making healthcare accessible and manageable for everyone. 🏥💙
 
 ## 📋 Available Scripts
 
