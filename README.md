@@ -2,6 +2,14 @@
 
 A modern healthcare platform for booking appointments with doctors. Built with React, TypeScript, and Node.js.
 
+## 🚀 Live Demo
+
+**🌐 Deployed Application:** [https://main-pi-ten.vercel.app/](https://main-pi-ten.vercel.app/)
+
+**🎥 Video Demonstration:** [Watch Full Demo](https://drive.google.com/file/d/1NVmPZu8fnXIR6gaN9qHShvufxbF8XGqS/view?usp=sharing)
+
+> The video demonstrates all key features including doctor search, appointment booking, profile management, and responsive design across different devices.
+
 ## ✨ Features
 
 - 🔍 **Doctor Search & Filtering** - Find doctors by specialty and availability
@@ -19,6 +27,11 @@ A modern healthcare platform for booking appointments with doctors. Built with R
 **Tools:** ESLint 9, TypeScript ESLint, PostCSS, Autoprefixer, Nodemon
 
 ## 🚀 Quick Start
+
+### 🌐 Try the Live Demo
+Visit the deployed application: **[https://main-pi-ten.vercel.app/](https://main-pi-ten.vercel.app/)**
+
+### 💻 Local Development Setup
 
 ```bash
 # 1. Clone repository
@@ -43,7 +56,7 @@ cd backend && npm run dev
 npm run dev
 ```
 
-**Access:** Frontend: http://localhost:5173 | Backend: http://localhost:5000
+**Local Access:** Frontend: http://localhost:5173 | Backend: http://localhost:5000
 
 ## 🔄 Improvements with More Time
 
@@ -129,9 +142,14 @@ npm run init-db     # Initialize database
 
 ## 🔧 Environment Variables
 
+### Production Deployment
+The live demo uses the deployed backend API automatically.
+
+### Local Development
+
 **Frontend (.env.local):**
 ```env
-VITE_API_BASE_URL=https://your-api-domain.com/api
+VITE_API_BASE_URL=http://localhost:5000/api
 ```
 
 **Backend (.env):**
@@ -145,6 +163,13 @@ PORT=5000
 
 ## 🧪 API Endpoints
 
+### Live API Base URL
+```
+Production: https://main-lg49bvpdl-abdul-raheem-khans-projects-5bca3fda.vercel.app/api
+Local: http://localhost:5000/api
+```
+
+### Available Endpoints
 ```
 GET    /api/doctors              # Get all doctors with filters
 GET    /api/doctors/:id          # Get doctor details
@@ -158,6 +183,25 @@ DELETE /api/appointments/:id     # Cancel appointment
 ## 📄 License
 
 MIT License - Making healthcare accessible for everyone. 🏥💙
+
+## 🎬 Demo & Deployment
+
+### Video Demonstration
+**📹 Full Feature Walkthrough:** [Google Drive Video](https://drive.google.com/file/d/1NVmPZu8fnXIR6gaN9qHShvufxbF8XGqS/view?usp=sharing)
+
+The video demonstrates:
+- 🏠 Homepage with doctor search and filtering
+- 👨‍⚕️ Doctor profiles with detailed information
+- 📅 Interactive appointment booking system
+- 📱 Responsive design across devices
+- 👤 User profile and appointment management
+- 🎨 Modern UI/UX with smooth animations
+
+### Deployment Details
+- **Frontend:** Deployed on Vercel with automatic deployments
+- **Backend:** Deployed API with full database integration
+- **Database:** Production MySQL database with sample data
+- **Domain:** [main-pi-ten.vercel.app](https://main-pi-ten.vercel.app/)
 
 ---
 
