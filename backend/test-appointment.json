@@ -1,0 +1,10 @@
+{
+  "doctorId": 2,
+  "patientName": "Test Patient",
+  "email": "test@example.com",
+  "phone": "+1-555-9999",
+  "date": "2025-08-20",
+  "time": "3:00 PM",
+  "reason": "Follow-up neurological consultation",
+  "notes": "Testing the new booking system with reason field"
+}
