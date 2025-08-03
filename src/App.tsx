@@ -2,6 +2,7 @@ import './App.css'
 import { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom'
 import HomePage from './features/home/HomePage'
+import DoctorsPage from './features/doctors/DoctorsPage'
 import DoctorDetailPage from './features/doctor/DoctorDetailPage'
 import BookAppointmentPage from './features/appointment/BookAppointmentPage'
 import AppointmentConfirmationPage from './features/appointment/AppointmentConfirmationPage'
@@ -42,6 +43,7 @@ function AppContent() {
       {showWelcome && <WelcomeAnimation onComplete={handleWelcomeComplete} />}
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/doctors" element={<DoctorsPage />} />
         <Route path="/doctor/:id" element={<DoctorDetailPage />} />
         <Route path="/appointment/:id" element={<BookAppointmentPage />} />
         <Route path="/appointment-confirmation" element={<AppointmentConfirmationPage />} />
