@@ -3,7 +3,9 @@ const cors = require('cors');
 const helmet = require('helmet');
 require('dotenv').config();
 
-const { testConnection } = require('./config/database');
+// Using mock data instead of database
+console.log('ℹ️  Application configured to use mock data');
+
 const doctorRoutes = require('./routes/doctors');
 const appointmentRoutes = require('./routes/appointments');
 
@@ -71,35 +73,16 @@ app.use((req, res) => {
 });
 
 // Start server
-async function startServer() {
-  try {
-    // Try to test database connection
-    try {
-      await testConnection();
-      console.log('✅ Database connected successfully');
-    } catch (dbError) {
-      console.warn('⚠️  Database connection failed, using mock data');
-      console.warn('Database error:', dbError.message);
-      console.warn('To use real database, please set up MySQL and update .env file');
-      // Set environment variable to use mock data
-      process.env.USE_MOCK_DATA = 'true';
-    }
-    
-    app.listen(PORT, () => {
-      console.log(`
+app.listen(PORT, () => {
+  console.log(`
 🚀 Healthcare API Server is running!
 📍 Server: http://localhost:${PORT}
 🌐 Environment: ${process.env.NODE_ENV || 'development'}
 📊 Health Check: http://localhost:${PORT}/health
 👩‍⚕️ Doctors API: http://localhost:${PORT}/api/doctors
-${process.env.USE_MOCK_DATA === 'true' ? '⚠️  Using mock data (database not connected)' : '✅ Using MySQL database'}
-      `);
-    });
-  } catch (error) {
-    console.error('❌ Failed to start server:', error.message);
-    process.exit(1);
-  }
-}
+💾 Using mock data (no database required)
+  `);
+});
 
 // Graceful shutdown
 process.on('SIGTERM', () => {
@@ -111,5 +94,3 @@ process.on('SIGINT', () => {
   console.log('SIGINT received. Shutting down gracefully...');
   process.exit(0);
 });
-
-startServer();

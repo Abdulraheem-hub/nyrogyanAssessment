@@ -38,7 +38,7 @@ A modern healthcare platform for booking appointments with doctors. Built with R
 
 **Frontend:** React 19, TypeScript 5.8, Vite 7, Tailwind CSS 4, Shadcn/UI, React Router DOM 7, Radix UI, Lucide React
 
-**Backend:** Node.js, Express.js 4, MySQL2, Helmet.js, CORS, Dotenv
+**Backend:** Node.js, Express.js 4, Mock Data Services, Helmet.js, CORS, Dotenv
 
 **Tools:** ESLint 9, TypeScript ESLint, PostCSS, Autoprefixer, Nodemon
 
@@ -58,14 +58,8 @@ cd nyrogyanAssessment/main
 npm install
 cd backend && npm install && cd ..
 
-# 3. Setup environment
-# Create backend/.env with your MySQL credentials
-
-# 4. Initialize database
-cd backend && npm run init-db && cd ..
-
-# 5. Start development servers
-# Terminal 1: Backend
+# 3. Start development servers
+# Terminal 1: Backend (using mock data)
 cd backend && npm run dev
 
 # Terminal 2: Frontend
@@ -120,12 +114,12 @@ npm run dev
 - **Solution:** Tailwind CSS utility classes and Shadcn/UI component system
 
 **5. Backend API Design**
-- **Challenge:** Scalable REST API with efficient database queries
-- **Solution:** Express.js routing, MySQL2 promises, comprehensive validation
+- **Challenge:** Scalable REST API with efficient data operations and realistic mock data
+- **Solution:** Express.js routing, in-memory mock services, comprehensive data simulation
 
 **6. Build and Deployment**
-- **Challenge:** Optimizing builds for development and production
-- **Solution:** Vite configuration, environment management, Vercel deployment
+- **Challenge:** Optimizing builds for development and production without database dependencies
+- **Solution:** Vite configuration, environment management, Vercel deployment with mock data
 
 ## 📁 Project Structure
 
@@ -152,14 +146,13 @@ npm run build       # Production build
 npm run deploy      # Deploy to Vercel
 
 # Backend
-npm run dev         # Development with nodemon
-npm run init-db     # Initialize database
+npm run dev         # Development with nodemon and mock data
 ```
 
 ## 🔧 Environment Variables
 
 ### Production Deployment
-The live demo uses the deployed backend API automatically.
+The live demo uses mock data services with no database dependencies.
 
 ### Local Development
 
@@ -170,18 +163,17 @@ VITE_API_BASE_URL=http://localhost:5000/api
 
 **Backend (.env):**
 ```env
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=your_password
-DB_NAME=nirogyan_db
 PORT=5000
+NODE_ENV=development
+FRONTEND_URL=http://localhost:5174
+USE_MOCK_DATA=true
 ```
 
 ## 🧪 API Endpoints
 
 ### Live API Base URL
 ```
-Production: https://main-lg49bvpdl-abdul-raheem-khans-projects-5bca3fda.vercel.app/api
+Production: https://main-pi-ten.vercel.app/api
 Local: http://localhost:5000/api
 ```
 
@@ -204,8 +196,8 @@ MIT License - Making healthcare accessible for everyone. 🏥💙
 
 ### Production Infrastructure
 - **Frontend:** Deployed on Vercel with automatic deployments from GitHub
-- **Backend API:** Deployed with full database integration and CORS configuration
-- **Database:** Production MySQL database with comprehensive sample data
+- **Backend API:** Deployed with mock data services and CORS configuration
+- **Data:** In-memory mock data with realistic sample content
 - **Domain:** [main-pi-ten.vercel.app](https://main-pi-ten.vercel.app/)
 - **CI/CD:** Automatic deployments on push to main branch
 
@@ -215,6 +207,7 @@ MIT License - Making healthcare accessible for everyone. 🏥💙
 - 📱 **Mobile First** - Responsive design tested across devices
 - 🎨 **Modern UI** - Shadcn/UI components with Tailwind CSS
 - 🚀 **TypeScript** - Full type safety across frontend and backend
+- 💾 **Mock Data** - No database setup required, instant deployment
 
 ---
 

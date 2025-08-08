@@ -8,7 +8,9 @@ if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config();
 }
 
-const { testConnection } = require('./config/database');
+// Using mock data instead of database
+console.log('ℹ️  Application configured to use mock data');
+
 const doctorRoutes = require('./routes/doctors');
 const appointmentRoutes = require('./routes/appointments');
 
@@ -79,51 +81,23 @@ app.use('/api/*', (req, res) => {
   });
 });
 
-// Initialize database connection on startup
-let dbConnected = false;
-async function initializeDatabase() {
-  try {
-    await testConnection();
-    console.log('✅ Database connected successfully');
-    dbConnected = true;
-  } catch (dbError) {
-    console.warn('⚠️  Database connection failed, using mock data');
-    console.warn('Database error:', dbError.message);
-    process.env.USE_MOCK_DATA = 'true';
-    dbConnected = false;
-  }
-}
-
 // For Vercel serverless functions
 if (process.env.VERCEL) {
-  // Initialize database once
-  if (!dbConnected) {
-    initializeDatabase();
-  }
   module.exports = app;
 } else {
   // For local development
   const PORT = process.env.PORT || 5000;
   
-  async function startServer() {
-    try {
-      await initializeDatabase();
-      
-      app.listen(PORT, () => {
-        console.log(`
+  app.listen(PORT, () => {
+    console.log(`
 🚀 Healthcare API Server is running!
 📍 Server: http://localhost:${PORT}
 🌐 Environment: ${process.env.NODE_ENV || 'development'}
 📊 Health Check: http://localhost:${PORT}/api/health
 👩‍⚕️ Doctors API: http://localhost:${PORT}/api/doctors
-${process.env.USE_MOCK_DATA === 'true' ? '⚠️  Using mock data (database not connected)' : '✅ Using MySQL database'}
-        `);
-      });
-    } catch (error) {
-      console.error('❌ Failed to start server:', error.message);
-      process.exit(1);
-    }
-  }
+💾 Using mock data (no database required)
+    `);
+  });
 
   // Graceful shutdown
   process.on('SIGTERM', () => {
@@ -135,6 +109,4 @@ ${process.env.USE_MOCK_DATA === 'true' ? '⚠️  Using mock data (database not 
     console.log('SIGINT received. Shutting down gracefully...');
     process.exit(0);
   });
-
-  startServer();
 }
