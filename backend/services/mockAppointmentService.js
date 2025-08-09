@@ -9,6 +9,7 @@ let mockAppointments = [
     date: "2025-08-15",
     time: "10:00",
     reason: "Regular checkup",
+    location: "Downtown Medical Center",
     notes: "Patient complains of chest pain occasionally",
     status: "confirmed",
     createdAt: new Date().toISOString(),
@@ -25,6 +26,7 @@ let mockAppointments = [
     date: "2025-08-16",
     time: "14:30",
     reason: "Child vaccination",
+    location: "Pediatric Care Clinic",
     notes: "5-year-old needs routine vaccinations",
     status: "confirmed",
     createdAt: new Date().toISOString(),
@@ -41,6 +43,7 @@ let mockAppointments = [
     date: "2025-08-18",
     time: "09:00",
     reason: "Knee pain consultation",
+    location: "Orthopedic Sports Center",
     notes: "Sports injury from running",
     status: "pending",
     createdAt: new Date().toISOString(),
@@ -57,6 +60,7 @@ let mockAppointments = [
     date: "2025-08-20",
     time: "11:15",
     reason: "Headache and memory issues",
+    location: "Neurology Institute",
     notes: "Frequent migraines, family history of neurological issues",
     status: "confirmed",
     createdAt: new Date().toISOString(),
@@ -73,6 +77,7 @@ let mockAppointments = [
     date: "2025-08-22",
     time: "15:45",
     reason: "Skin rash examination",
+    location: "Dermatology Center",
     notes: "Persistent rash on arms and face",
     status: "cancelled",
     createdAt: new Date().toISOString(),
@@ -166,12 +171,28 @@ class MockAppointmentService {
       date,
       time,
       reason,
+      location,
       notes,
       status = 'confirmed'
     } = appointmentData;
 
     // Find doctor info to enrich appointment data
     const doctor = mockDoctors.find(d => d.id === parseInt(doctorId));
+    
+    // Default locations based on specialty
+    const defaultLocations = {
+      'Cardiologist': 'Heart Care Center',
+      'Neurologist': 'Neurology Institute', 
+      'Pediatrician': 'Children\'s Medical Center',
+      'Orthopedic Surgeon': 'Orthopedic Sports Center',
+      'Dermatologist': 'Dermatology Center',
+      'Gastroenterologist': 'Digestive Health Clinic',
+      'Gynecologist': 'Women\'s Health Center'
+    };
+    
+    const appointmentLocation = location || 
+      (doctor ? defaultLocations[doctor.specialty] : null) || 
+      'Main Medical Center';
     
     const newAppointment = {
       id: Math.max(...mockAppointments.map(a => a.id), 0) + 1,
@@ -182,6 +203,7 @@ class MockAppointmentService {
       date,
       time,
       reason,
+      location: appointmentLocation,
       notes: notes || null,
       status,
       createdAt: new Date().toISOString(),

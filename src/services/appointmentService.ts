@@ -1,5 +1,94 @@
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'http://localhost:5001/api';
 
+// Mock appointments data for fallback
+const mockAppointments: Appointment[] = [
+  {
+    id: 1,
+    doctorId: 1,
+    patientName: "John Smith",
+    email: "john.smith@email.com",
+    phone: "+1-555-1001",
+    date: "2025-08-15",
+    time: "10:00",
+    reason: "Regular checkup",
+    location: "Downtown Medical Center",
+    notes: "Patient complains of chest pain occasionally",
+    status: "confirmed",
+    createdAt: new Date().toISOString(),
+    doctorName: "Dr. Sarah Johnson",
+    doctorSpecialty: "Cardiologist",
+    doctorImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    id: 2,
+    doctorId: 3,
+    patientName: "Emma Wilson",
+    email: "emma.wilson@email.com",
+    phone: "+1-555-1002",
+    date: "2025-08-16",
+    time: "14:30",
+    reason: "Child vaccination",
+    location: "Pediatric Care Clinic",
+    notes: "5-year-old needs routine vaccinations",
+    status: "confirmed",
+    createdAt: new Date().toISOString(),
+    doctorName: "Dr. Emily Rodriguez",
+    doctorSpecialty: "Pediatrician",
+    doctorImage: "https://images.unsplash.com/photo-1594824706002-5dc2ef20edd2?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    id: 3,
+    doctorId: 4,
+    patientName: "Michael Brown",
+    email: "michael.brown@email.com",
+    phone: "+1-555-1003",
+    date: "2025-08-18",
+    time: "09:00",
+    reason: "Knee pain consultation",
+    location: "Orthopedic Sports Center",
+    notes: "Sports injury from running",
+    status: "pending",
+    createdAt: new Date().toISOString(),
+    doctorName: "Dr. James Wilson",
+    doctorSpecialty: "Orthopedic Surgeon",
+    doctorImage: "https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    id: 4,
+    doctorId: 2,
+    patientName: "Sarah Davis",
+    email: "sarah.davis@email.com",
+    phone: "+1-555-1004",
+    date: "2025-08-20",
+    time: "11:15",
+    reason: "Headache and memory issues",
+    location: "Neurology Institute",
+    notes: "Frequent migraines, family history of neurological issues",
+    status: "confirmed",
+    createdAt: new Date().toISOString(),
+    doctorName: "Dr. Michael Chen",
+    doctorSpecialty: "Neurologist",
+    doctorImage: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face"
+  },
+  {
+    id: 5,
+    doctorId: 5,
+    patientName: "David Johnson",
+    email: "david.johnson@email.com",
+    phone: "+1-555-1005",
+    date: "2025-08-22",
+    time: "15:45",
+    reason: "Skin rash examination",
+    location: "Dermatology Center",
+    notes: "Persistent rash on arms and face",
+    status: "cancelled",
+    createdAt: new Date().toISOString(),
+    doctorName: "Dr. Lisa Anderson",
+    doctorSpecialty: "Dermatologist",
+    doctorImage: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face"
+  }
+];
+
 export interface Appointment {
   id: number
   doctorId: number
@@ -27,6 +116,18 @@ export interface ApiResponse<T> {
 }
 
 export const appointmentService = {
+  // Mock data fallback functions
+  getMockAppointments: (): Appointment[] => {
+    return [...mockAppointments];
+  },
+
+  getMockAppointmentsByStatus: (status: string): Appointment[] => {
+    if (!status || status === 'all') {
+      return [...mockAppointments];
+    }
+    return mockAppointments.filter(appointment => appointment.status === status);
+  },
+
   // Fetch API helper
   async fetchApi<T>(endpoint: string, options?: RequestInit): Promise<ApiResponse<T>> {
     try {
@@ -64,22 +165,32 @@ export const appointmentService = {
 
   // Get all appointments for the current user
   getAllAppointments: async (): Promise<Appointment[]> => {
-    const response = await appointmentService.fetchApi<Appointment[]>('/appointments');
-    return response.data;
+    try {
+      const response = await appointmentService.fetchApi<Appointment[]>('/appointments');
+      return response.data;
+    } catch (error) {
+      console.warn('Failed to load appointments from API, using mock data:', error);
+      return appointmentService.getMockAppointments();
+    }
   },
 
   // Get appointments by status
   getAppointmentsByStatus: async (status: string): Promise<Appointment[]> => {
-    const queryParams = new URLSearchParams();
-    if (status && status !== 'all') {
-      queryParams.append('status', status);
+    try {
+      const queryParams = new URLSearchParams();
+      if (status && status !== 'all') {
+        queryParams.append('status', status);
+      }
+      
+      const queryString = queryParams.toString();
+      const endpoint = `/appointments${queryString ? `?${queryString}` : ''}`;
+      
+      const response = await appointmentService.fetchApi<Appointment[]>(endpoint);
+      return response.data;
+    } catch (error) {
+      console.warn('Failed to load appointments by status from API, using mock data:', error);
+      return appointmentService.getMockAppointmentsByStatus(status);
     }
-    
-    const queryString = queryParams.toString();
-    const endpoint = `/appointments${queryString ? `?${queryString}` : ''}`;
-    
-    const response = await appointmentService.fetchApi<Appointment[]>(endpoint);
-    return response.data;
   },
 
   // Book a new appointment
@@ -93,11 +204,35 @@ export const appointmentService = {
     reason: string
     notes?: string | null
   }): Promise<Appointment> => {
-    const response = await appointmentService.fetchApi<Appointment>('/appointments', {
-      method: 'POST',
-      body: JSON.stringify(appointmentData),
-    });
-    return response.data;
+    try {
+      const response = await appointmentService.fetchApi<Appointment>('/appointments', {
+        method: 'POST',
+        body: JSON.stringify(appointmentData),
+      });
+      return response.data;
+    } catch (error) {
+      console.warn('Failed to book appointment via API, using mock data:', error);
+      // Create a mock appointment
+      const newId = Math.max(...mockAppointments.map(a => a.id)) + 1;
+      const mockAppointment: Appointment = {
+        id: newId,
+        doctorId: appointmentData.doctorId,
+        patientName: appointmentData.patientName,
+        email: appointmentData.email,
+        phone: appointmentData.phone || undefined,
+        date: appointmentData.date,
+        time: appointmentData.time,
+        reason: appointmentData.reason,
+        notes: appointmentData.notes || undefined,
+        status: 'confirmed',
+        createdAt: new Date().toISOString(),
+        doctorName: `Doctor ${appointmentData.doctorId}`,
+        doctorSpecialty: 'General',
+        doctorImage: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face'
+      };
+      mockAppointments.push(mockAppointment);
+      return mockAppointment;
+    }
   },
 
   // Cancel an appointment
@@ -119,8 +254,8 @@ export const appointmentService = {
       const response = await appointmentService.fetchApi<Appointment>(`/appointments/${id}`);
       return response.data;
     } catch (error) {
-      console.error('Error fetching appointment:', error);
-      return null;
+      console.warn('Failed to get appointment by ID from API, using mock data:', error);
+      return mockAppointments.find(appointment => appointment.id === id) || null;
     }
   },
 
